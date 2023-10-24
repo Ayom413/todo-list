@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Todo List</title>
+</head>
+<body>
+    <form action="tasks.php" method="POST">
+        <label for="title">Заголовок:</label>
+        <input type="text" name="title" id="title" required><br>
+        <label for="description">Описание:</label>
+        <textarea name="description" id="description" required></textarea><br>
+        <input type="submit" value="Добавить задачу">
+    </form>
+    
+    <form class="edit-form" action="tasks.php" method="POST">
+        <input type="hidden" name="action" value="edit">
+        <label for="task_id">ID:</label>
+        <input type="text" name="task_id" id="edit_task_id" required>
+        <label for="edit_title">Заголовок:</label>
+        <input type="text" name="edit_title" id="edit_title"><br>
+        <label for="edit_description">Описание:</label>
+        <textarea name="edit_description" id="edit_description"></textarea><br>
+        <label for="edit_status">Статус:</label>
+        <select name="edit_status" id="edit_status" required>
+            <option value="В процессе">В процессе</option>
+            <option value="Выполнено">Выполнено</option>
+        </select><br>
+        <input type="submit" value="Редактировать задачу">
+    </form>
+    
+    <form class="delete-form" action="tasks.php" method="POST">
+        <input type="hidden" name="action" value="delete">
+        <label for="task_id">ID:</label>
+        <input type="text" name="task_id" id="delete_task_id" required>
+        <input type="submit" value="Удалить задачу">
+    </form>
+    
+    <form action="tasks.php" method="GET">
+    <input type="submit" value="Показать все задачи">
+    </form>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('.edit').click(function() {
+                var id = $(this).data("id");
+                $("#edit_task_id").val(id);
+            });
+        
+            $('.delete').click(function() {
+                var id = $(this).data("id");
+                $("#delete_task_id").val(id);
+            });
+        });
+    </script>
+</body>
+</html>
